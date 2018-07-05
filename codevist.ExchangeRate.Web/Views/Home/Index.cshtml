@@ -1,0 +1,49 @@
+﻿@model codevist.ExchangeRate.Web.Models.ExchangeRateDTO
+@{
+    ViewBag.Title = "Anasayfa";
+}
+
+<div class="jumbotron">
+    <h1>Codevist Doviz Kurları</h1>
+  
+</div>
+
+<table id="currencyList" class="table table-striped table-bordered" style="width:100%">
+    <thead>
+        <tr>
+            <th>Kur Adı</th>
+            <th>Alış Fiyatı</th>
+            <th>Satış Fiyatı</th>
+            <th>Değişim Oranı</th>
+            <th>Son Güncellenme</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+    
+    
+    @foreach (var item in Model.ExchangeRateDataList)
+    {
+        <tr>
+            <td>@item.Currency.CurrencyName</td>
+            <td>@item.Buying</td>
+            <td>@item.Selling</td>
+            <td>@item.ChangeRate</td>
+            <td>@item.CreatedDate</td>
+
+        </tr>
+    }
+    
+
+
+    </tbody>
+   
+</table>
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#currencyList').DataTable();
+        });
+    </script>
+}
